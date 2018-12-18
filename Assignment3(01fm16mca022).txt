@@ -1,0 +1,442 @@
+Geometric Shapes
+MainActivity.java
+package com.example.neha.animate;
+import android.os.Bundle;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.support.v4.app.*;
+@SuppressLint("NewApi") public class MainActivity extends Activity {
+    private ImageView imageView;
+    private ImageView imageView1;
+    private ImageView imageView4;
+    private ImageView googleImage;
+    private ImageView thread;
+    long animationDuration=1000;//miliseconds
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        imageView=(ImageView)findViewById(R.id.imageView1);
+        imageView1=(ImageView)findViewById(R.id.imageView2);
+        imageView4=(ImageView)findViewById(R.id.imageView3);
+        googleImage=(ImageView)findViewById(R.id.imageView4);
+        thread=(ImageView)findViewById(R.id.imageView5)
+}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    public void handleAnimation(View view){
+        ObjectAnimator animatorX=ObjectAnimator.ofFloat(imageView,"x",220f);
+        animatorX.setDuration(animationDuration);
+
+        ObjectAnimator animatorY=ObjectAnimator.ofFloat(imageView, "y", 300f);
+        animatorY.setDuration(animationDuration);
+
+        ObjectAnimator alphaAnimation=ObjectAnimator.ofFloat(imageView4,View.ALPHA,1.0f,0.0f);
+        alphaAnimation.setDuration(animationDuration);
+
+        ObjectAnimator rotateAnimation=ObjectAnimator.ofFloat(imageView,"rotation",0f,360f);
+        rotateAnimation.setDuration(animationDuration);
+
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.playTogether(animatorX,animatorY);
+
+        animatorSet.start();
+
+    }
+    public void handleAnimation2(View view){
+        ObjectAnimator animatorX1=ObjectAnimator.ofFloat(imageView,"x",220f);
+        animatorX1.setDuration(animationDuration);
+
+        ObjectAnimator animatorY1=ObjectAnimator.ofFloat(imageView, "y", 300f);
+        animatorY1.setDuration(animationDuration);
+
+        ObjectAnimator animatorX=ObjectAnimator.ofFloat(imageView1,"x",220f);
+        animatorX.setDuration(animationDuration);
+
+        ObjectAnimator animatorY=ObjectAnimator.ofFloat(imageView1, "y", 300f);
+        animatorY.setDuration(animationDuration);
+
+        ObjectAnimator alphaAnimation=ObjectAnimator.ofFloat(googleImage,View.ALPHA,1.0f,0.0f);
+        alphaAnimation.setDuration(animationDuration);
+
+        ObjectAnimator rotateAnimation=ObjectAnimator.ofFloat(imageView4,"rotation",0f,360f);
+        rotateAnimation.setDuration(animationDuration);
+
+        ObjectAnimator animatorY2=ObjectAnimator.ofFloat(thread, "y",200f);
+
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.playTogether(animatorX,rotateAnimation);
+        animatorSet.playTogether(animatorX,alphaAnimation);
+        animatorSet.playTogether(animatorX1,animatorY1);
+        animatorSet.playTogether(animatorY2);
+        animatorSet.start();
+
+    }
+}
+
+
+activity_main.xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/image3" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/button1"
+        android:layout_alignTop="@+id/imageView1"
+        android:src="@drawable/google" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView4"
+        android:src="@drawable/image" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignEnd="@+id/imageView3"
+        android:layout_marginTop="70dp"
+        android:onClick="handleAnimation2"
+        android:text="Animate Images" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageView4"
+        android:src="@drawable/thread" />
+
+</RelativeLayout>
+
+menu.xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="my menu Item!"
+        app:showAsAction="never" />
+</menu>
+
+
+
+Animatation 
+MainActivity.java
+package com.example.neha.animate;
+
+
+import android.os.Bundle;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.view.animation.Animation;
+import android.widget.ImageView;
+import android.support.v4.app.*;
+
+
+@SuppressLint("NewApi") public class MainActivity extends Activity {
+    private ImageView imageView;
+    private ImageView imageView1;
+    private ImageView imageView4;
+    private ImageView googleImage;
+    private ImageView thread;
+    long animationDuration=1000;//miliseconds
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        imageView=(ImageView)findViewById(R.id.imageView1);
+        imageView1=(ImageView)findViewById(R.id.imageView2);
+        imageView4=(ImageView)findViewById(R.id.imageView3);
+        googleImage=(ImageView)findViewById(R.id.imageView4);
+        thread=(ImageView)findViewById(R.id.imageView5);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    public void handleAnimation(View view){
+        ObjectAnimator animatorX=ObjectAnimator.ofFloat(imageView,"x",220f);
+        animatorX.setDuration(animationDuration);
+
+        ObjectAnimator animatorY=ObjectAnimator.ofFloat(imageView, "y", 300f);
+        animatorY.setDuration(animationDuration);
+
+        ObjectAnimator alphaAnimation=ObjectAnimator.ofFloat(imageView4,View.ALPHA,1.0f,0.0f);
+        alphaAnimation.setDuration(animationDuration);
+
+        ObjectAnimator rotateAnimation=ObjectAnimator.ofFloat(imageView,"rotation",0f,360f);
+        rotateAnimation.setDuration(animationDuration);
+
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.playTogether(animatorX,animatorY);
+
+        animatorSet.start();
+
+    }
+    public void handleAnimation2(View view){
+        ObjectAnimator animatorX1=ObjectAnimator.ofFloat(imageView,"x",220f);
+        animatorX1.setDuration(animationDuration);
+
+        ObjectAnimator animatorY1=ObjectAnimator.ofFloat(imageView, "y", 300f);
+        animatorY1.setDuration(animationDuration);
+
+        ObjectAnimator animatorX=ObjectAnimator.ofFloat(imageView1,"x",220f);
+        animatorX.setDuration(animationDuration);
+
+        ObjectAnimator animatorY=ObjectAnimator.ofFloat(imageView1, "y", 300f);
+        animatorY.setDuration(animationDuration);
+
+        ObjectAnimator alphaAnimation=ObjectAnimator.ofFloat(googleImage,View.ALPHA,1.0f,0.0f);
+        alphaAnimation.setDuration(animationDuration);
+
+        ObjectAnimator rotateAnimation=ObjectAnimator.ofFloat(imageView4,"rotation",0f,360f);
+        rotateAnimation.setDuration(animationDuration);
+
+        ObjectAnimator animatorY2=ObjectAnimator.ofFloat(thread, "y",200f);
+
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.playTogether(animatorX,rotateAnimation);
+        animatorSet.playTogether(animatorX,alphaAnimation);
+        animatorSet.playTogether(animatorX1,animatorY1);
+        animatorSet.playTogether(animatorY2);
+        animatorSet.start();
+
+    }
+}
+
+
+activity_main.xml
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="my menu Item!"
+        app:showAsAction="never" />
+
+</menu>
+
+Accelerometer
+
+MainActivity.java
+
+package com.example.neha.accelerometer;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements SensorEventListener{
+
+    private TextView xText, yText, zText;
+    private Sensor mySensor;
+    private SensorManager SM;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Create our Sensor Manager
+        SM = (SensorManager)getSystemService(SENSOR_SERVICE);
+
+        // Accelerometer Sensor
+        mySensor = SM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        // Register sensor Listener
+        SM.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+        // Assign TextView
+        xText = (TextView)findViewById(R.id.xText);
+        yText = (TextView)findViewById(R.id.yText);
+        zText = (TextView)findViewById(R.id.zText);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Not in use
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        xText.setText("X: " + event.values[0]);
+        yText.setText("Y: " + event.values[1]);
+        zText.setText("Z: " + event.values[2]);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+
+main_menu.xml
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>
+
+MediaPlayer
+
+package com.example.neha.mediaplayer;
+
+import android.media.MediaPlayer;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MainActivity extends AppCompatActivity {
+    Button clk1,clk2,clk3;
+    MediaPlayer mdx;
+
+
+     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        clk1=(Button)findViewById(R
+                .id.playid);
+        clk2=(Button)findViewById(R.id.pauseid);
+        clk3=(Button)findViewById(R.id.stopid);
+        mdx=MediaPlayer.create(MainActivity.this,R.raw.count);
+
+    }
+    public void clkplay(View view)
+    {
+        mdx.start();
+    }
+    public void clkpause(View view)
+    {
+        mdx.pause();
+    }
+    public void clkstop(View view)
+    {
+        mdx.stop();
+    }
+
+
+}
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAY"
+        android:onClick="clkplay"
+        android:id="@+id/playid"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PAUSE"
+        android:onClick="clkpause"
+        android:id="@+id/pauseid"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP"
+        android:onClick="clkstop"
+        android:id="@+id/stopid"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>
+
+
+
+
+
